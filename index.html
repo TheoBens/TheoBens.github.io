@@ -39,7 +39,7 @@
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1250px;
       margin: auto;
       padding: 2rem;
       position: relative;
@@ -78,17 +78,16 @@
     .skill-item {
       background-color: var(--gris-bleute);
       border-radius: 10px;
-      padding: 0.3rem 0.7rem;
+      padding: 0.5rem 1rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      font-size: 0.9rem;
     }
 
     .skill-item img {
-      width: 64px;
-      height: 64px;
+      width: 23px;
+      height: 23px;
     }
 
     .profil-section {
@@ -101,7 +100,7 @@
     .profil-banderole {
       position: absolute;
       top: 0;
-      left: calc(50% - 550px + 20px);
+      left: 275px;
       width: 200px;
       height: 350px;
       background-color: var(--bleu-plus-fonce);
@@ -111,17 +110,47 @@
       align-items: center;
       justify-content: center;
       z-index: 100;
+      transition: all 0.3s ease;
     }
 
     .profil-photo {
-      width: 170px;
-      height: 170px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       border: 4px solid var(--blanc);
-      position: relative;
       z-index: 101;
+    }
+
+    .card {
+      background-color: var(--gris-bleute);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .card-title {
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-description {
+      text-align: left;
     }
 
     @media screen and (max-width: 768px) {
@@ -140,7 +169,23 @@
       }
 
       .profil-banderole {
-        display: none;
+        position: static;
+        width: 150px;
+        height: auto;
+        clip-path: none;
+        background-color: transparent;
+        box-shadow: none;
+        margin: 0 auto 1rem;
+        justify-content: center;
+        left: auto;
+      }
+
+      .profil-photo {
+        margin: auto;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -179,41 +224,53 @@
     <section class="section">
       <h2 data-fr="Contact" data-en="Contact">Contact</h2>
       <ul>
+        <li>📧 theo.bensadoun@gmail.com</li>
         <li>📞 +33 6 62 15 31 13</li>
         <li>📍 87000, Limoges, France — Mobile dans le monde</li>
-        <li>📧 theo.bensadoun@gmail.com</li>
       </ul>
     </section>
 
     <section class="section">
       <h2 data-fr="Formation" data-en="Education">Formation</h2>
       <ul>
-        <li data-fr="4ème année d’étude d'ingénieur informatique à 3IL, spécialité IA & Robotique, Limoges 2021-2026" data-en="4th year of Computer Engineering at 3IL, AI & Robotics specialization, Limoges 2021-2026"></li>
-        <li data-fr="L2 physique monodisciplinaire à la Sorbonne UPMC" data-en="Physics Bachelor's (2nd year), Sorbonne UPMC"></li>
+        <li data-fr="5ème année d’étude d'ingénieur informatique à 3IL, spécialité IA & Robotique, Limoges 2021-2026" data-en="5th year of Computer Engineering at 3IL, AI & Robotics specialization, Limoges 2021-2026"></li>
+        <li data-fr="L3 physique monodisciplinaire à la Sorbonne UPMC" data-en="Physics Bachelor's (3rd year), Sorbonne UPMC"></li>
         <li data-fr="Bac spécialités : Physique-Chimie, Mathématiques, Sciences Économiques et Sociales (Lycée Saint-Genès, Bordeaux)" data-en="French Baccalaureate: Physics-Chemistry, Mathematics, Social Sciences (Saint-Genès High School, Bordeaux)"></li>
         <li data-fr="Délégué de promo 2023-2024" data-en="Class Representative 2023-2024"></li>
       </ul>
     </section>
 
-    <section class="section">
-      <h2 data-fr="Projets scolaires" data-en="Academic Projects">Projets scolaires</h2>
-      <div class="card-grid">
-        <div class="card" data-fr="Projet IA : Systèmes intelligents pour la lecture labiale en temps réel" data-en="AI Project: Real-time lip reading systems"></div>
-        <div class="card" data-fr="Projet AI4industry : identification d’assiettes défectueuses (traitement d’image + ML)" data-en="AI4industry Project: Defective plate detection (image processing + ML)"></div>
-        <div class="card" data-fr="Jeu Morpion avec IA (Q-learning)" data-en="Tic-Tac-Toe with AI (Q-learning)"></div>
-        <div class="card" data-fr="Analyse de langue par HMM en Python" data-en="Language detection using HMM in Python"></div>
-        <div class="card" data-fr="ESP32 prévisions météo (API + affichage)" data-en="ESP32 Weather Forecast Display (API + UI)"></div>
+  <section class="section">
+    <h2 data-fr="Expériences" data-en="Experiences">Expériences</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h4 class="card-title" data-fr="Stage DSI Région Nouvelle-Aquitaine (6 semaines)" data-en="Internship at DSI Nouvelle-Aquitaine (6 weeks)">Stage DSI Région Nouvelle-Aquitaine (6 semaines)</h4>
+        <p class="card-description" data-fr="Installation de monitoring, détection de failles, assistance PMO." data-en="Monitoring setup, vulnerability detection, project management support.">Installation de monitoring, détection de failles, assistance PMO.</p>
       </div>
-    </section>
+      <div class="card">
+        <h4 class="card-title" data-fr="Stage ENSMM (4 mois)" data-en="ENSMM (4 months)">Stage ENSMM (4 mois)</h4>
+        <p class="card-description" data-fr="Développement et déploiement d’une api python dans le cadre d’un projet de résolution d’exercices mathématiques." data-en="Python API development and deployment as part of a project to solve mathematical exercises.">Développement et déploiement d’une API Python dans le cadre d’un projet de résolution d’exercices mathématiques.</p>
+      </div>
+    </div>
+  </section>
 
-    <section class="section">
-      <h2 data-fr="Expérience" data-en="Experience">Expérience</h2>
-      <div class="card-grid">
-        <div class="card" data-fr="Stage ENSMM : Développement et déploiement d'une API Python pour résoudre des exercices mathématiques" data-en="ENSMM Internship: Developed & deployed a Python API to solve math exercises"></div>
-        <div class="card" data-fr="Stage DSI Nouvelle-Aquitaine : Monitoring & chefferie de projet, détection de failles de sécurité" data-en="DSI Internship: Monitoring & project management, security flaw detection"></div>
-        <div class="card" data-fr="Projet réseaux & systèmes : Audit et résolution de vulnérabilités sur une architecture virtuelle" data-en="Networks & systems project: Vulnerability audit & resolution on virtual infrastructure"></div>
+  <section class="section">
+    <h2 data-fr="Projets scolaires" data-en="Academic Projects">Projets scolaires</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h4 class="card-title" data-fr="AI4Industry" data-en="AI4Industry">AI4Industry</h4>
+        <p class="card-description" data-fr="Détection d’assiettes défectueuses avec traitement d’image et machine learning." data-en="Defective plate detection with image processing and ML.">Détection d’assiettes défectueuses avec traitement d’image et machine learning.</p>
       </div>
-    </section>
+      <div class="card">
+        <h4 class="card-title" data-fr="SILLDA : Lecture labiale" data-en="Lip Reading">Lecture labiale</h4>
+        <p class="card-description" data-fr="Systèmes intelligents pour la lecture labiale en temps réel." data-en="Smart systems for real-time lip reading.">Systèmes intelligents pour la lecture labiale en temps réel.</p>
+      </div>
+      <div class="card">
+        <h4 class="card-title" data-fr="Cybersécurité" data-en="Cybersecurity">Cybersécurité</h4>
+        <p class="card-description" data-fr="Projet système et architecture réseaux + Gestion de monitoring : Détection, analyse et résolution des failles de sécurité d'une infrastructure au sein d'une entreprise virtuelle." data-en="System and network architecture project + Monitoring management: Detection, analysis and resolution of infrastructure security flaws within a virtual enterprise.">Détection/analyse/résolution de failles dans une infrastructure simulée.</p>
+      </div>
+    </div>
+  </section>
 
     <section class="section">
       <h2 data-fr="Compétences" data-en="Skills">Compétences</h2>
@@ -236,7 +293,7 @@
           <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"><span>C</span></div>
           <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"><span>C++</span></div>
           <div class="skill-item"><img src="https://cdn.simpleicons.org/mysql/4479A1"><span>SQL</span></div>
-          <div class="skill-item"><img src="https://cdn.simpleicons.org/rproject/276DC3"><span>R</span></div>
+          <div class="skill-item"><img src="https://cdn.simpleicons.org/R"><span>R</span></div>
           <div class="skill-item"><img src="https://cdn.simpleicons.org/gnubash/4EAA25"><span>Bash</span></div>
         </div>
       </div>
@@ -245,7 +302,7 @@
         <h3>Bibliothèques</h3>
         <div class="skills-list">
           <div class="skill-item"><img src="https://cdn.simpleicons.org/numpy/013243"><span>NumPy</span></div>
-          <div class="skill-item"><img src="https://cdn.simpleicons.org/matplotlib/11557C"><span>Matplotlib</span></div>
+          <div class="skill-item"><img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Matplotlib_icon.svg"><span>Matplotlib</span></div>
           <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"><span>TensorFlow</span></div>
           <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"><span>PyTorch</span></div>
           <div class="skill-item"><img src="https://cdn.simpleicons.org/opencv/5C3EE8"><span>OpenCV</span></div>
@@ -256,7 +313,7 @@
         <h3>Robotique</h3>
         <div class="skills-list">
           <div class="skill-item"><img src="https://cdn.simpleicons.org/ros/22314E"><span>ROS</span></div>
-          <div class="skill-item"><img src="https://cdn.simpleicons.org/gazebo/000000"><span>Gazebo</span></div>
+          <div class="skill-item"><img src=https://images.seeklogo.com/logo-png/31/2/gazebo-logo-png_seeklogo-317144.png><span>Gazebo</span></div>
           <div class="skill-item"><img src="https://cdn.simpleicons.org/ubuntu/ed4815"><span>Turtlebot</span></div>
           <div class="skill-item"><img src="https://cdn.simpleicons.org/mapbox/000000"><span>SLAM/Mapping</span></div>
         </div>
@@ -269,6 +326,16 @@
           <div class="skill-item"><img src="https://cdn.simpleicons.org/raspberrypi/A22846"><span>Raspberry Pi</span></div>
         </div>
       </div>
+
+      <div class="skills-category">
+        <h3>DevOps : API & Cloud</h3>
+        <div class="skills-list">
+          <div class="skill-item"><img src="https://cdn.simpleicons.org/flask/000000"><span>Flask</span></div>
+          <div class="skill-item"><img src="https://cdn.simpleicons.org/fastapi/009688"><span>FastAPI</span></div>
+          <div class="skill-item"><img src="https://cdn.simpleicons.org/scaleway/7B00FF"><span>Scaleway</span></div>
+        </div>
+      </div>
+
     </section>
   </div>
 
