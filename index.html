@@ -52,6 +52,8 @@
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
       padding: 2rem;
       margin-bottom: 2rem;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
     }
 
     .section h2 {
@@ -102,7 +104,7 @@
       top: 0;
       left: 275px;
       width: 200px;
-      height: 350px;
+      height: 430px;
       background-color: var(--bleu-plus-fonce);
       clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
       box-shadow: 5px 0 15px rgba(0,0,0,0.3);
@@ -123,6 +125,12 @@
       z-index: 101;
     }
 
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
     .card {
       background-color: var(--gris-bleute);
       border-radius: 10px;
@@ -130,24 +138,57 @@
       margin-bottom: 1rem;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: inherit;
+      text-decoration: none;
     }
 
-    .card:hover {
+    .card-projet {
+      color: white;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-projet::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+      transition: background 0.3s ease;
+    }
+
+    .card-projet:hover::before {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .card-projet:hover {
       transform: scale(1.03);
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     }
 
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
+    .card-title,
+    .card-description {
+      position: relative;
+      z-index: 1;
     }
 
-    .card-title {
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 0.5rem;
-    }
+    .bg-champmag { background-image: url("images/proton.jpg"); }
+    .bg-sillda   { background-image: url("images/liptracking.png"); }
+    .bg-robotique{ background-image: url("images/Dijkstra.png"); }
+    .bg-ai4industry{ background-image: url("images/ai4industry.png"); }
+    .bg-cyber    { background-image: url("images/cyber.jpg"); }
+
+    .bg-champmag:hover    { background-image: url("images/proton.gif"); }
+    .bg-sillda:hover      { background-image: url("images/liptracking.gif"); }
+    .bg-robotique:hover   { background-image: url("images/Dijkstra.gif"); }
+    .bg-ai4industry:hover { background-image: url("images/ai4industry2.png"); }
+    .bg-cyber:hover       { background-image: url("images/cyber.gif"); }
 
     .card-description {
       text-align: left;
@@ -187,6 +228,11 @@
       .card-grid {
         grid-template-columns: 1fr;
       }
+
+      .card-title {
+        text-align: center;
+      }
+
     }
   </style>
   <script>
@@ -201,14 +247,15 @@
 </head>
 <body>
   <div class="profil-banderole">
-    <img src="photo_theo.jpg" alt="Photo de Théo" class="profil-photo">
+    <img src="images/photo_theo.jpg" alt="Photo de Théo" class="profil-photo">
   </div>
 
-  <header>
-    <h1 data-fr="Théo Ben Sadoun" data-en="Théo Ben Sadoun">Théo Ben Sadoun</h1>
-    <div class="lang-switch">
-      <button onclick="toggleLang('fr')">FR</button>
-      <button onclick="toggleLang('en')">EN</button>
+  <header style="background: url('images/font.gif') center/cover no-repeat; height: 200px; text-align: center; color: white; display: flex; align-items: center; justify-content: center;">
+    <div>
+      <h1 data-fr="Théo Ben Sadoun" data-en="Théo Ben Sadoun">Théo Ben Sadoun</h1>
+      <p data-fr="Étudiant en ingénierie informatique, spécialité IA & Robotique" data-en="Computer Engineering Student, AI & Robotics specialization">
+        Étudiant en ingénierie informatique, spécialité IA & Robotique
+      </p>
     </div>
   </header>
 
@@ -217,7 +264,12 @@
       <div>
         <h2 data-fr="Profil" data-en="Profile">Profil</h2>
         <p data-fr="Curieux, affable et proactif, je suis passionné de sciences et de réflexions autour du monde qui nous entoure et sur la nature de son fonctionnement. J’apprécie le travail en équipe." 
-           data-en="Curious, affable and proactive, I am passionate about science and reflection on the world around us and how it works. I enjoy teamwork."></p>
+          data-en="Curious, affable and proactive, I am passionate about science and reflection on the world around us and how it works. I enjoy teamwork."></p>
+        <blockquote id="quote" 
+          data-fr="“Il n’y a rien de plus précieux que la conscience et la curiosité qui ont été offertes aux Hommes, attributs par lesquels l’Univers peut s’observer et se comprendre lui-même.”" 
+          data-en="“Nothing is more precious than the consciousness and curiosity that have been given to humans, attributes through which the Universe can observe and understand itself.”" 
+          style="font-style: italic; font-size: 1rem; text-align: center; margin: 1.0rem auto; max-width: 800px; padding: 1rem 2rem; background-color: #f5f7f9; border-left: 5px solid var(--bleu-fonce); border-radius: 8px;">
+        </blockquote>
       </div>
     </section>
 
@@ -244,12 +296,15 @@
     <h2 data-fr="Expériences" data-en="Experiences">Expériences</h2>
     <div class="card-grid">
       <div class="card">
-        <h4 class="card-title" data-fr="Stage DSI Région Nouvelle-Aquitaine (6 semaines)" data-en="Internship at DSI Nouvelle-Aquitaine (6 weeks)">Stage DSI Région Nouvelle-Aquitaine (6 semaines)</h4>
-        <p class="card-description" data-fr="Installation de monitoring, détection de failles, assistance PMO." data-en="Monitoring setup, vulnerability detection, project management support.">Installation de monitoring, détection de failles, assistance PMO.</p>
+        <h4 class="card-title" data-fr="Stage à l'ENSMM (4 mois)" data-en="Internship at ENSMM (4 months)">Stage à l'ENSMM (4 mois)</h4>
+        <p class="card-description" data-fr="Développement et déploiement d’une api python dans le cadre d’un projet de résolution d’exercices mathématiques." data-en="Python API development and deployment as part of a project to solve mathematical exercises.">Développement et déploiement d’une API Python dans le cadre d’un projet de résolution d’exercices mathématiques.</p>
       </div>
       <div class="card">
-        <h4 class="card-title" data-fr="Stage ENSMM (4 mois)" data-en="ENSMM (4 months)">Stage ENSMM (4 mois)</h4>
-        <p class="card-description" data-fr="Développement et déploiement d’une api python dans le cadre d’un projet de résolution d’exercices mathématiques." data-en="Python API development and deployment as part of a project to solve mathematical exercises.">Développement et déploiement d’une API Python dans le cadre d’un projet de résolution d’exercices mathématiques.</p>
+        <h4 class="card-title" data-fr="Stage DSI Région Nouvelle-Aquitaine (6 semaines)" data-en="Internship at DSI Nouvelle-Aquitaine (6 weeks)">Stage DSI Région Nouvelle-Aquitaine (6 semaines)</h4>
+        <p class="card-description">
+          <ul><li data-fr="Installation de monitoring afin de détecter les failles potentielles." data-en="Monitoring setup to detect potential vulnerabilities.">Installation de monitoring, détection de failles, assistance PMO.</li>
+          <li data-fr="Chefferie de projet : Assistance du Project Management Officer (PMO)" data-en="Project Management Officer (PMO) support."></li></ul>
+        </p>
       </div>
     </div>
   </section>
@@ -257,18 +312,41 @@
   <section class="section">
     <h2 data-fr="Projets scolaires" data-en="Academic Projects">Projets scolaires</h2>
     <div class="card-grid">
-      <div class="card">
+
+      <a href="https://github.com/theo-ben-sadoun/proton-therapy" target="_blank" class="card card-projet bg-champmag">
+        <h4 class="card-title" data-fr="Champ Magnétique et Protonthérapie" data-en="Magnetic Field and Proton Therapy">Champ Magnétique et Protonthérapie</h4>
+        <p class="card-description" data-fr="Projet de modélisation numérique pour la physique: Étude de l'influence d'un champ magnétique sur la trajectoire d'une particule chargée, et application au domaine de la protonthérapie." data-en="Numerical modeling project for physics: Study of the influence of a magnetic field on the trajectory of a charged particle, and application to the field of proton therapy.">Projet de modélisation numérique pour la physique: Étude de l'influence d'un champ magnétique sur la trajectoire d'une particule chargée, et application au domaine de la protonthérapie.</p>
+      </a>
+
+      <a href="https://github.com/OWkut/SILLDA" target="_blank" class="card card-projet bg-sillda">
+        <h4 class="card-title" data-fr="Projet SILLDA : Lecture labiale" data-en="SILLDA Project : Lip Reading">Lecture labiale</h4>
+        <p class="card-description" data-fr="Systèmes intelligents pour la lecture labiale en temps réel. Combinaison d'un modèle de lip-tracking et d'un modèle de lip-reading, et ajustement du modèle final au sein d'une interface de lecture labiale en temps réel." data-en="Smart systems for real-time lip-reading. Combining a lip-tracking model and a lip-reading model, and adjusting the final model within a real-time lip-reading interface.">Systèmes intelligents pour la lecture labiale en temps réel. Combinaison d'un modèle de lip-tracking et d'un modèle de lip-reading, et ajustement du modèle final au sein d'une interface de lecture labiale en temps réel.</p>
+      </a>
+
+      <a href="https://github.com/TheoBens3IL/Projet-Robotique" target="_blank" class="card card-projet bg-robotique">
+        <h4 class="card-title" data-fr="Projet Robotique" data-en="Robotic Project">Robotique</h4>
+        <p class="card-description" data-fr="Exploration des principes fondamentaux de la navigation autonome à l'aide de ROS. Modélisation d'un environnement réaliste et étude comparative de trois algorithmes de motion planning." data-en="Exploration of the fundamental principles of autonomous navigation using ROS. Modeling a realistic environment and comparative study of three motion planning algorithms.">Exploration des principes fondamentaux de la navigation autonome à l'aide de ROS...</p>
+      </a>
+
+      <a href="https://github.com/Tehoma/ia4industry_2025" target="_blank" class="card card-projet bg-ai4industry">
         <h4 class="card-title" data-fr="AI4Industry" data-en="AI4Industry">AI4Industry</h4>
-        <p class="card-description" data-fr="Détection d’assiettes défectueuses avec traitement d’image et machine learning." data-en="Defective plate detection with image processing and ML.">Détection d’assiettes défectueuses avec traitement d’image et machine learning.</p>
-      </div>
-      <div class="card">
-        <h4 class="card-title" data-fr="SILLDA : Lecture labiale" data-en="Lip Reading">Lecture labiale</h4>
-        <p class="card-description" data-fr="Systèmes intelligents pour la lecture labiale en temps réel." data-en="Smart systems for real-time lip reading.">Systèmes intelligents pour la lecture labiale en temps réel.</p>
-      </div>
-      <div class="card">
+        <p class="card-description" data-fr="Détection d’assiettes défectueuses avec traitement d’image et machine learning. Construction d'un CNN entraîné sur une banque d'images traitées et filtrées." data-en="Defective plates detection using image processing and machine learning. CNN trained on a filtered image dataset.">Détection d’assiettes défectueuses avec traitement d’image et machine learning...</p>
+      </a>
+
+      <a href="https://github.com/OWkut/Projet-image" target="_blank" class="card card-projet bg-cyber">
+        <h4 class="card-title" data-fr="Projet Traitement d'images" data-en="Image Processing Project">Projet Traitement d'images</h4>
+        <p class="card-description" data-fr="Utilisation de YOLO pour créer une intelligence artificielle de détection et classification de déchets." data-en="Utilization of YOLO to create an artificial intelligence for waste detection and classification.">Utilisation de YOLO pour créer une intelligence artificielle de détection et classification de déchets</p>
+      </a>
+
+      <a href="https://github.com/theo-ben-sadoun/cybersecurity-project" target="_blank" class="card card-projet bg-cyber">
         <h4 class="card-title" data-fr="Cybersécurité" data-en="Cybersecurity">Cybersécurité</h4>
-        <p class="card-description" data-fr="Projet système et architecture réseaux + Gestion de monitoring : Détection, analyse et résolution des failles de sécurité d'une infrastructure au sein d'une entreprise virtuelle." data-en="System and network architecture project + Monitoring management: Detection, analysis and resolution of infrastructure security flaws within a virtual enterprise.">Détection/analyse/résolution de failles dans une infrastructure simulée.</p>
-      </div>
+        <p class="card-description" data-fr="Projet système et architecture réseaux + Gestion de monitoring : Détection, analyse et résolution des failles de sécurité d'une infrastructure simulée." data-en="System/network architecture & monitoring: Detection, analysis, resolution of simulated infrastructure vulnerabilities.">Projet système et architecture réseaux + Gestion de monitoring : Détection, analyse...</p>
+      </a>
+
+      <a href="https://github.com/theo-ben-sadoun/cybersecurity-project" target="_blank" class="card card-projet bg-cyber">
+        <h4 class="card-title" data-fr="Appli Java" data-en="Java App">Appli Java</h4>
+        <p class="card-description" data-fr="Développement d'une application Web-Java" data-en="Development of a Web-Java application.">Développement d'une application Web-Java</p>
+      </a>
     </div>
   </section>
 

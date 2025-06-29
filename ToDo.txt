@@ -1,0 +1,9 @@
+- La profil-banderole doit être responsive
+
+- Centrer les titres des Projets et Expériences
+
+- Dans Projets, rajouter :
+    (- Appli-Java)
+    (- space invaders) https://github.com/TheoBens3IL/Space-Invaders
+
+- Rajouter des banderoles/déco sur les côtés
