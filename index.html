@@ -105,7 +105,7 @@
       left: 275px;
       width: 200px;
       height: 430px;
-      background-color: var(--bleu-plus-fonce);
+      background-color: var(--bleu-fonce);
       clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
       box-shadow: 5px 0 15px rgba(0,0,0,0.3);
       display: flex;
@@ -178,17 +178,45 @@
       z-index: 1;
     }
 
-    .bg-champmag { background-image: url("images/proton.jpg"); }
+    .card-title {
+      text-align: center;
+    }
+
+    .decor-left, .decor-right {
+      position: fixed;
+      top: 0;
+      width: 30px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--bleu-fonce), transparent 50%, var(--bleu-fonce));
+      opacity: 0.3;
+      z-index: 0;
+    }
+
+    .decor-left {
+      left: 0;
+    }
+
+    .decor-right {
+      right: 0;
+    }
+
+    .bg-champmag { background-image: url("images/protontherapie.png"); }
     .bg-sillda   { background-image: url("images/liptracking.png"); }
     .bg-robotique{ background-image: url("images/Dijkstra.png"); }
     .bg-ai4industry{ background-image: url("images/ai4industry.png"); }
+    .bg-images  { background-image: url("images/traitement-images.png"); }
     .bg-cyber    { background-image: url("images/cyber.jpg"); }
+    .bg-java     { background-image: url("images/java.png"); }
+    .bg-space-invaders { background-image: url("images/space-invaders.png"); }
 
     .bg-champmag:hover    { background-image: url("images/proton.gif"); }
     .bg-sillda:hover      { background-image: url("images/liptracking.gif"); }
     .bg-robotique:hover   { background-image: url("images/Dijkstra.gif"); }
     .bg-ai4industry:hover { background-image: url("images/ai4industry2.png"); }
+    .bg-images:hover      { background-image: url("images/traitement-images.gif"); }
     .bg-cyber:hover       { background-image: url("images/cyber.gif"); }
+    .bg-java:hover        { background-image: url("images/java.gif"); }
+    .bg-space-invaders:hover { background-image: url("images/space-invaders.gif"); }
 
     .card-description {
       text-align: left;
@@ -251,13 +279,21 @@
   </div>
 
   <header style="background: url('images/font.gif') center/cover no-repeat; height: 200px; text-align: center; color: white; display: flex; align-items: center; justify-content: center;">
+    <div class="lang-switch">
+      <button onclick="toggleLang('fr')">Fr</button>
+      <button onclick="toggleLang('en')">En</button>
+    </div>
     <div>
       <h1 data-fr="Théo Ben Sadoun" data-en="Théo Ben Sadoun">Théo Ben Sadoun</h1>
-      <p data-fr="Étudiant en ingénierie informatique, spécialité IA & Robotique" data-en="Computer Engineering Student, AI & Robotics specialization">
+      <p data-fr="Étudiant en ingénierie informatique, spécialité IA & Robotique"
+        data-en="Computer Engineering Student, AI & Robotics specialization">
         Étudiant en ingénierie informatique, spécialité IA & Robotique
       </p>
     </div>
   </header>
+
+  <div class="decor-left"></div>
+  <div class="decor-right"></div>
 
   <div class="container">
     <section class="section profil-section">
@@ -313,28 +349,28 @@
     <h2 data-fr="Projets scolaires" data-en="Academic Projects">Projets scolaires</h2>
     <div class="card-grid">
 
-      <a href="https://github.com/theo-ben-sadoun/proton-therapy" target="_blank" class="card card-projet bg-champmag">
-        <h4 class="card-title" data-fr="Champ Magnétique et Protonthérapie" data-en="Magnetic Field and Proton Therapy">Champ Magnétique et Protonthérapie</h4>
+      <a href="https://github.com/TheoBens/MagneticField-and-Protontherapy" target="_blank" class="card card-projet bg-champmag">
+        <h4 class="card-title" data-fr="Champ Magnétique et Protonthérapie (2025)" data-en="Magnetic Field and Proton Therapy (2025)">Champ Magnétique et Protonthérapie</h4>
         <p class="card-description" data-fr="Projet de modélisation numérique pour la physique: Étude de l'influence d'un champ magnétique sur la trajectoire d'une particule chargée, et application au domaine de la protonthérapie." data-en="Numerical modeling project for physics: Study of the influence of a magnetic field on the trajectory of a charged particle, and application to the field of proton therapy.">Projet de modélisation numérique pour la physique: Étude de l'influence d'un champ magnétique sur la trajectoire d'une particule chargée, et application au domaine de la protonthérapie.</p>
       </a>
 
       <a href="https://github.com/OWkut/SILLDA" target="_blank" class="card card-projet bg-sillda">
-        <h4 class="card-title" data-fr="Projet SILLDA : Lecture labiale" data-en="SILLDA Project : Lip Reading">Lecture labiale</h4>
+        <h4 class="card-title" data-fr="Projet SILLDA : Lecture labiale (2025)" data-en="SILLDA Project : Lip Reading (2025)">Lecture labiale</h4>
         <p class="card-description" data-fr="Systèmes intelligents pour la lecture labiale en temps réel. Combinaison d'un modèle de lip-tracking et d'un modèle de lip-reading, et ajustement du modèle final au sein d'une interface de lecture labiale en temps réel." data-en="Smart systems for real-time lip-reading. Combining a lip-tracking model and a lip-reading model, and adjusting the final model within a real-time lip-reading interface.">Systèmes intelligents pour la lecture labiale en temps réel. Combinaison d'un modèle de lip-tracking et d'un modèle de lip-reading, et ajustement du modèle final au sein d'une interface de lecture labiale en temps réel.</p>
       </a>
 
       <a href="https://github.com/TheoBens3IL/Projet-Robotique" target="_blank" class="card card-projet bg-robotique">
-        <h4 class="card-title" data-fr="Projet Robotique" data-en="Robotic Project">Robotique</h4>
+        <h4 class="card-title" data-fr="Projet Robotique (2025)" data-en="Robotic Project (2025)">Robotique (2025)</h4>
         <p class="card-description" data-fr="Exploration des principes fondamentaux de la navigation autonome à l'aide de ROS. Modélisation d'un environnement réaliste et étude comparative de trois algorithmes de motion planning." data-en="Exploration of the fundamental principles of autonomous navigation using ROS. Modeling a realistic environment and comparative study of three motion planning algorithms.">Exploration des principes fondamentaux de la navigation autonome à l'aide de ROS...</p>
       </a>
 
       <a href="https://github.com/Tehoma/ia4industry_2025" target="_blank" class="card card-projet bg-ai4industry">
-        <h4 class="card-title" data-fr="AI4Industry" data-en="AI4Industry">AI4Industry</h4>
+        <h4 class="card-title" data-fr="AI4Industry (2025)" data-en="AI4Industry (2025)">AI4Industry (2025)</h4>
         <p class="card-description" data-fr="Détection d’assiettes défectueuses avec traitement d’image et machine learning. Construction d'un CNN entraîné sur une banque d'images traitées et filtrées." data-en="Defective plates detection using image processing and machine learning. CNN trained on a filtered image dataset.">Détection d’assiettes défectueuses avec traitement d’image et machine learning...</p>
       </a>
 
-      <a href="https://github.com/OWkut/Projet-image" target="_blank" class="card card-projet bg-cyber">
-        <h4 class="card-title" data-fr="Projet Traitement d'images" data-en="Image Processing Project">Projet Traitement d'images</h4>
+      <a href="https://github.com/OWkut/Projet-image" target="_blank" class="card card-projet bg-images">
+        <h4 class="card-title" data-fr="Projet Traitement d'images (2025)" data-en="Image Processing Project (2025)">Projet Traitement d'images (2025)</h4>
         <p class="card-description" data-fr="Utilisation de YOLO pour créer une intelligence artificielle de détection et classification de déchets." data-en="Utilization of YOLO to create an artificial intelligence for waste detection and classification.">Utilisation de YOLO pour créer une intelligence artificielle de détection et classification de déchets</p>
       </a>
 
@@ -343,9 +379,14 @@
         <p class="card-description" data-fr="Projet système et architecture réseaux + Gestion de monitoring : Détection, analyse et résolution des failles de sécurité d'une infrastructure simulée." data-en="System/network architecture & monitoring: Detection, analysis, resolution of simulated infrastructure vulnerabilities.">Projet système et architecture réseaux + Gestion de monitoring : Détection, analyse...</p>
       </a>
 
-      <a href="https://github.com/theo-ben-sadoun/cybersecurity-project" target="_blank" class="card card-projet bg-cyber">
-        <h4 class="card-title" data-fr="Appli Java" data-en="Java App">Appli Java</h4>
-        <p class="card-description" data-fr="Développement d'une application Web-Java" data-en="Development of a Web-Java application.">Développement d'une application Web-Java</p>
+      <a href="https://github.com/TheoBens3IL/Appli-Java" target="_blank" class="card card-projet bg-java">
+        <h4 class="card-title" data-fr="Appli Java (2023)" data-en="Java App (2023)">Appli Java</h4>
+        <p class="card-description" data-fr="Développement d'une application Web-Java qui récolte les données de passages bippés de coureurs de marathon, et de les traiter afin d'en déterminer un classement." data-en="Development of a Web-Java application that collects the data of marathon runners' chip passes, and processes it to determine a ranking.">Développement d'une application Web-Java qui récolte les données de passages bippés de coureurs de marathon, et de les traiter afin d'en déterminer un classement.</p>
+      </a>
+
+      <a href="https://github.com/TheoBens3IL/Space-Invaders" target="_blank" class="card card-projet bg-space-invaders">
+        <h4 class="card-title" data-fr="Space Invaders (2022)" data-en="Space Invaders (2022)">Space Invaders</h4>
+        <p class="card-description" data-fr="Projet de développement d'un Space Invaders en Java" data-en="Numerical modeling project for physics: Study of the influence of a magnetic field on the trajectory of a charged particle, and application to the field of proton therapy.">Projet de modélisation numérique pour la physique: Étude de l'influence d'un champ magnétique sur la trajectoire d'une particule chargée, et application au domaine de la protonthérapie.</p>
       </a>
     </div>
   </section>
