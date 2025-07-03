@@ -10,6 +10,8 @@
       --bleu-plus-fonce: #1a252f;
       --gris-bleute: #dbe4ea;
       --blanc: #ffffff;
+      --profil-banderole-left: 60px;
+      --profil-banderole-width: 160px;
     }
 
     * {
@@ -93,26 +95,28 @@
     }
 
     .profil-section {
+      position: relative;
       display: flex;
       align-items: center;
-      position: relative;
-      padding-left: 220px;
+      min-height: 220px;
+      padding-left: calc(var(--profil-banderole-width) + 30px);
     }
 
     .profil-banderole {
-      position: absolute;
+      position: fixed;
       top: 0;
-      left: 275px;
-      width: 200px;
-      height: 430px;
+      left: 0;
+      width: var(--profil-banderole-width);
+      height: 100px; /* sera ajusté dynamiquement */
       background-color: var(--bleu-fonce);
       clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
       box-shadow: 5px 0 15px rgba(0,0,0,0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 100;
+      z-index: 1002;
       transition: all 0.3s ease;
+      overflow: hidden;
     }
 
     .profil-photo {
@@ -122,7 +126,16 @@
       object-fit: cover;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       border: 4px solid var(--blanc);
-      z-index: 101;
+      z-index: 11;
+    }
+
+    .profil-texte {
+      flex: 1 1 0%;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 2;
     }
 
     .card-grid {
@@ -182,7 +195,11 @@
       text-align: center;
     }
 
-    .decor-left, .decor-right {
+    .decor-left {
+      display: none;
+    }
+
+    .decor-right {
       position: fixed;
       top: 0;
       width: 30px;
@@ -192,24 +209,16 @@
       z-index: 0;
     }
 
-    .decor-left {
-      left: 0;
-    }
-
-    .decor-right {
-      right: 0;
-    }
-
     .bg-champmag { background-image: url("images/protontherapie.png"); }
     .bg-sillda   { background-image: url("images/liptracking.png"); }
     .bg-robotique{ background-image: url("images/Dijkstra.png"); }
     .bg-ai4industry{ background-image: url("images/ai4industry.png"); }
     .bg-images  { background-image: url("images/traitement-images.png"); }
     .bg-cyber    { background-image: url("images/cyber.jpg"); }
-    .bg-java     { background-image: url("images/java.png"); }
+    .bg-java     { background-image: url("images/AppliJava.png");}
     .bg-space-invaders { background-image: url("images/space-invaders.png"); }
 
-    .bg-champmag:hover    { background-image: url("images/proton.gif"); }
+    .bg-champmag:hover    { background-image: url("images/proton_traj.gif"); }
     .bg-sillda:hover      { background-image: url("images/liptracking.gif"); }
     .bg-robotique:hover   { background-image: url("images/Dijkstra.gif"); }
     .bg-ai4industry:hover { background-image: url("images/ai4industry2.png"); }
@@ -222,45 +231,62 @@
       text-align: left;
     }
 
-    @media screen and (max-width: 768px) {
-      .container {
-        padding: 1rem;
+    @media screen and (max-width: 900px) {
+      :root {
+        --profil-banderole-width: 100px;
       }
+      .profil-photo {
+        width: 90px;
+        height: 90px;
+      }
+    }
 
+    @media screen and (max-width: 768px) {
+      .profil-banderole {
+        position: static;
+        width: 100px;
+        height: auto;
+        clip-path: none;
+        background-color: var(--bleu-fonce);
+        box-shadow: none;
+        margin-bottom: 1rem;
+        overflow: visible;
+        left: 0;
+      }
+      .main-header, .container {
+        padding-left: 0;
+      }
+      .profil-photo {
+        width: 70px;
+        height: 70px;
+      }
+      .profil-section {
+        flex-direction: column;
+        align-items: center;
+        min-height: unset;
+        padding-left: 0;
+      }
+      .profil-texte {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+      }
       .lang-switch {
         position: static;
         margin-top: 1rem;
       }
-
-      .profil-section {
-        flex-direction: column;
-        padding-left: 0;
-      }
-
-      .profil-banderole {
-        position: static;
-        width: 150px;
-        height: auto;
-        clip-path: none;
-        background-color: transparent;
-        box-shadow: none;
-        margin: 0 auto 1rem;
-        justify-content: center;
-        left: auto;
-      }
-
-      .profil-photo {
-        margin: auto;
-      }
-
       .card-grid {
         grid-template-columns: 1fr;
       }
-
       .card-title {
         text-align: center;
       }
+    }
 
+    .main-header {
+      padding-left: 0;
+      box-sizing: border-box;
+      justify-content: center;
     }
   </style>
   <script>
@@ -271,39 +297,69 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => toggleLang('fr'));
+
+    function adjustProfilBanderole() {
+      var banderole = document.querySelector('.profil-banderole');
+      var profilSection = document.querySelector('.profil-section');
+      var container = document.querySelector('.container');
+      if (!banderole || !profilSection || !container) return;
+      if (window.innerWidth <= 768) {
+        banderole.style.position = 'static';
+        banderole.style.left = '0';
+        banderole.style.height = 'auto';
+        return;
+      }
+      // Position horizontale alignée avec le container centré, mais un peu plus à droite
+      var containerRect = container.getBoundingClientRect();
+      var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+      banderole.style.position = 'fixed';
+      banderole.style.left = (containerRect.left + scrollLeft + 15) + 'px'; // +15px à droite (donc plus à gauche)
+      // Hauteur = du haut de la page jusqu'en bas de la section profil, indépendamment du scroll
+      banderole.style.height = (profilSection.getBoundingClientRect().bottom - 25) + 'px'; // -25px en bas
+      // Masquer la banderole seulement quand le header principal sort de l'écran
+      var mainHeader = document.querySelector('.main-header');
+      if (mainHeader && mainHeader.getBoundingClientRect().bottom > 0) {
+        banderole.style.opacity = '1';
+        banderole.style.pointerEvents = 'auto';
+      } else {
+        banderole.style.opacity = '0';
+        banderole.style.pointerEvents = 'none';
+      }
+    }
+    window.addEventListener('resize', adjustProfilBanderole);
+    window.addEventListener('DOMContentLoaded', adjustProfilBanderole);
+    window.addEventListener('scroll', adjustProfilBanderole);
   </script>
 </head>
 <body>
   <div class="profil-banderole">
     <img src="images/photo_theo.jpg" alt="Photo de Théo" class="profil-photo">
   </div>
-
-  <header style="background: url('images/font.gif') center/cover no-repeat; height: 200px; text-align: center; color: white; display: flex; align-items: center; justify-content: center;">
+  <header class="main-header" style="background: url('images/font.gif') center/cover no-repeat; height: 200px; text-align: center; color: white; display: flex; align-items: center; justify-content: center;">
     <div class="lang-switch">
       <button onclick="toggleLang('fr')">Fr</button>
       <button onclick="toggleLang('en')">En</button>
     </div>
     <div>
       <h1 data-fr="Théo Ben Sadoun" data-en="Théo Ben Sadoun">Théo Ben Sadoun</h1>
-      <p data-fr="Étudiant en ingénierie informatique, spécialité IA & Robotique"
-        data-en="Computer Engineering Student, AI & Robotics specialization">
-        Étudiant en ingénierie informatique, spécialité IA & Robotique
+      <p data-fr="Étudiant en ingénierie informatique, spécialité IA & Robotique, et en licence de physique."
+        data-en="Computer Engineering Student, AI & Robotics specialization, and Physics Bachelor's degree.">
+        Étudiant en ingénierie informatique, spécialité IA & Robotique, et en licence de physique.
       </p>
     </div>
   </header>
 
-  <div class="decor-left"></div>
   <div class="decor-right"></div>
 
   <div class="container">
     <section class="section profil-section">
-      <div>
+      <div class="profil-texte">
         <h2 data-fr="Profil" data-en="Profile">Profil</h2>
-        <p data-fr="Curieux, affable et proactif, je suis passionné de sciences et de réflexions autour du monde qui nous entoure et sur la nature de son fonctionnement. J’apprécie le travail en équipe." 
+        <p data-fr="Curieux, affable et proactif, je suis passionné de sciences et de réflexions autour du monde qui nous entoure et sur la nature de son fonctionnement. J'apprécie le travail en équipe." 
           data-en="Curious, affable and proactive, I am passionate about science and reflection on the world around us and how it works. I enjoy teamwork."></p>
         <blockquote id="quote" 
-          data-fr="“Il n’y a rien de plus précieux que la conscience et la curiosité qui ont été offertes aux Hommes, attributs par lesquels l’Univers peut s’observer et se comprendre lui-même.”" 
-          data-en="“Nothing is more precious than the consciousness and curiosity that have been given to humans, attributes through which the Universe can observe and understand itself.”" 
+          data-fr="“Il n'y a rien de plus précieux que la conscience et la curiosité qui ont été offertes aux Hommes, attributs par lesquels l'Univers peut s'observer et se comprendre lui-même." 
+          data-en="“Nothing is more precious than the consciousness and curiosity that have been given to humans, attributes through which the Universe can observe and understand itself." 
           style="font-style: italic; font-size: 1rem; text-align: center; margin: 1.0rem auto; max-width: 800px; padding: 1rem 2rem; background-color: #f5f7f9; border-left: 5px solid var(--bleu-fonce); border-radius: 8px;">
         </blockquote>
       </div>
@@ -321,7 +377,7 @@
     <section class="section">
       <h2 data-fr="Formation" data-en="Education">Formation</h2>
       <ul>
-        <li data-fr="5ème année d’étude d'ingénieur informatique à 3IL, spécialité IA & Robotique, Limoges 2021-2026" data-en="5th year of Computer Engineering at 3IL, AI & Robotics specialization, Limoges 2021-2026"></li>
+        <li data-fr="5ème année d'étude d'ingénieur informatique à 3IL, spécialité IA & Robotique, Limoges 2021-2026" data-en="5th year of Computer Engineering at 3IL, AI & Robotics specialization, Limoges 2021-2026"></li>
         <li data-fr="L3 physique monodisciplinaire à la Sorbonne UPMC" data-en="Physics Bachelor's (3rd year), Sorbonne UPMC"></li>
         <li data-fr="Bac spécialités : Physique-Chimie, Mathématiques, Sciences Économiques et Sociales (Lycée Saint-Genès, Bordeaux)" data-en="French Baccalaureate: Physics-Chemistry, Mathematics, Social Sciences (Saint-Genès High School, Bordeaux)"></li>
         <li data-fr="Délégué de promo 2023-2024" data-en="Class Representative 2023-2024"></li>
@@ -333,7 +389,7 @@
     <div class="card-grid">
       <div class="card">
         <h4 class="card-title" data-fr="Stage à l'ENSMM (4 mois)" data-en="Internship at ENSMM (4 months)">Stage à l'ENSMM (4 mois)</h4>
-        <p class="card-description" data-fr="Développement et déploiement d’une api python dans le cadre d’un projet de résolution d’exercices mathématiques." data-en="Python API development and deployment as part of a project to solve mathematical exercises.">Développement et déploiement d’une API Python dans le cadre d’un projet de résolution d’exercices mathématiques.</p>
+        <p class="card-description" data-fr="Développement, déploiement, et sécurisation d'une api python dans le cadre d'un projet de correction automatique et personnalisée d'exercices mathématiques." data-en="Python API development and deployment as part of a project to solve mathematical exercises.">Développement et déploiement d'une API Python dans le cadre d'un projet de résolution d'exercices mathématiques.</p>
       </div>
       <div class="card">
         <h4 class="card-title" data-fr="Stage DSI Région Nouvelle-Aquitaine (6 semaines)" data-en="Internship at DSI Nouvelle-Aquitaine (6 weeks)">Stage DSI Région Nouvelle-Aquitaine (6 semaines)</h4>
@@ -366,7 +422,7 @@
 
       <a href="https://github.com/Tehoma/ia4industry_2025" target="_blank" class="card card-projet bg-ai4industry">
         <h4 class="card-title" data-fr="AI4Industry (2025)" data-en="AI4Industry (2025)">AI4Industry (2025)</h4>
-        <p class="card-description" data-fr="Détection d’assiettes défectueuses avec traitement d’image et machine learning. Construction d'un CNN entraîné sur une banque d'images traitées et filtrées." data-en="Defective plates detection using image processing and machine learning. CNN trained on a filtered image dataset.">Détection d’assiettes défectueuses avec traitement d’image et machine learning...</p>
+        <p class="card-description" data-fr="Détection d'assiettes défectueuses avec traitement d'image et machine learning. Construction d'un CNN entraîné sur une banque d'images traitées et filtrées." data-en="Defective plates detection using image processing and machine learning. CNN trained on a filtered image dataset.">Détection d'assiettes défectueuses avec traitement d'image et machine learning...</p>
       </a>
 
       <a href="https://github.com/OWkut/Projet-image" target="_blank" class="card card-projet bg-images">
@@ -452,6 +508,7 @@
           <div class="skill-item"><img src="https://cdn.simpleicons.org/flask/000000"><span>Flask</span></div>
           <div class="skill-item"><img src="https://cdn.simpleicons.org/fastapi/009688"><span>FastAPI</span></div>
           <div class="skill-item"><img src="https://cdn.simpleicons.org/scaleway/7B00FF"><span>Scaleway</span></div>
+          <div class="skill-item"><img src="https://cdn.simpleicons.org/grafana/F46800"><span>Grafana</span></div>
         </div>
       </div>
 
