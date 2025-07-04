@@ -1,3 +1,12 @@
 Projet github à modifier :
 - README de protontherapy (avec screen des images)
 - README de Projet Robotique (inspiré du rapport avec screen des images)
+
+met un espace entre le bouton Fr et le bouton En
+
+à certains pourcentage de zoom, la banière recouvre le texte de la banderole principal du haut
+
+.lang-switch {
+  position: static;
+  margin-top: 1rem;
+}
