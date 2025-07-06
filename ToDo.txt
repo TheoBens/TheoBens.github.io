@@ -1,3 +1,0 @@
-Projet github à modifier :
-- README de protontherapy (avec screen des images)
-- README de Projet Robotique (inspiré du rapport avec screen des images)
