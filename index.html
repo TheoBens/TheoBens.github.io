@@ -187,7 +187,10 @@
     .bg-robotique{ background-image: url("images/Dijkstra.png"); }
     .bg-ai4industry{ background-image: url("images/ai4industry.png"); }
     .bg-images  { background-image: url("images/traitement-images.png"); }
-    .bg-cyber    { background-image: url("images/cyber.jpg"); }
+    .bg-walkingscan {
+      background-image: url("images/WalkingScan-preview.png");
+      background-color: #1b263b;
+    }
     .bg-java     { background-image: url("images/AppliJava.png");}
     .bg-space-invaders { background-image: url("images/space-invaders.png"); }
 
@@ -196,7 +199,7 @@
     .bg-robotique:hover   { background-image: url("images/Dijkstra.gif"); }
     .bg-ai4industry:hover { background-image: url("images/ai4industry2.png"); }
     .bg-images:hover      { background-image: url("images/traitement-images.gif"); }
-    .bg-cyber:hover       { background-image: url("images/cyber.gif"); }
+    .bg-walkingscan:hover { background-image: url("images/WalkingScan.png"); }
     .bg-java:hover        { background-image: url("images/java.gif"); }
     .bg-space-invaders:hover { background-image: url("images/space-invaders.gif"); }
 
@@ -243,6 +246,28 @@
       box-sizing: border-box;
       justify-content: center;
     }
+
+    .main-header h1 {
+      margin-bottom: 0.75rem;
+    }
+
+    .main-header h1 + p,
+    .main-header h1 + p + p {
+      font-size: 1.15rem;
+      line-height: 1.3;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 36rem;
+    }
+
+    .main-header h1 + p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .main-header h1 + p + p {
+      margin-top: 0.15rem;
+    }
   </style>
   <script>
     function toggleLang(lang) {
@@ -262,10 +287,8 @@
     </div>
     <div>
       <h1 data-fr="Théo Ben Sadoun" data-en="Théo Ben Sadoun">Théo Ben Sadoun</h1>
-      <p data-fr="Étudiant en ingénierie informatique, spécialité IA & Robotique, et en licence de physique monodisciplinaire."
-        data-en="Computer Engineering Student, AI & Robotics specialization, and Physics Bachelor's degree.">
-        Étudiant en ingénierie informatique, spécialité IA & Robotique, et en licence de physique.
-      </p>
+      <p data-fr="Étudiant en Master de Sciences Cognitives" data-en="Master's student in Cognitive Science">Étudiant en Master de Sciences Cognitives</p>
+      <p data-fr="Ingénieur Informatique spécialité Deep Learning" data-en="Computer Engineer, Deep Learning specialization">Ingénieur Informatique spécialité Deep Learning</p>
     </div>
   </header>
 
@@ -275,10 +298,11 @@
     <section class="section">
       <h2 data-fr="Formation" data-en="Education">Formation</h2>
       <ul>
-        <li data-fr="5ème année d'étude d'ingénieur informatique à 3IL, spécialité IA & Robotique, Limoges 2021-2026" data-en="5th year of Computer Engineering at 3IL, AI & Robotics specialization, Limoges 2021-2026"></li>
-        <li data-fr="L3 physique monodisciplinaire à la Sorbonne UPMC" data-en="Physics Bachelor's (3rd year), Sorbonne UPMC"></li>
+        <li data-fr="Master Cog-SUP en Sciences Cognitives – filière Computational Neuroscience &amp; Artificial Intelligence (2026–2027). Sorbonne Université et Université Paris Cité." data-en="Cog-SUP Master's Program in Cognitive Science – Computational Neuroscience &amp; Artificial Intelligence Track (2026–2027). Sorbonne Université &amp; Université Paris Cité.">Master Cog-SUP en sciences cognitives – filière Computational Neuroscience & Artificial Intelligence (2026–2027). Sorbonne Université et Université Paris Cité.</li>
+        <li data-fr="Étude d'ingénieur informatique, spécialité IA & Robotique, 3iL Limoges 2021-2026" data-en="Computer Engineering Degree, AI & Robotics specialization, 3iL Limoges 2021-2026"></li>
+        <li data-fr="L2 physique monodisciplinaire à la Sorbonne UPMC" data-en="Physics Bachelor's (3rd year), Sorbonne UPMC"></li>
         <li data-fr="L3 informatique à l'Université de Limoges (Faculté des Sciences et Techniques)" data-en="Computer Science Bachelor's (3rd year), University of Limoges"></li>
-        <li data-fr="Bac spécialités : Physique-Chimie, Mathématiques, Sciences Économiques et Sociales (Lycée Saint-Genès, Bordeaux)" data-en="French Baccalaureate: Physics-Chemistry, Mathematics, Social Sciences (Saint-Genès High School, Bordeaux)"></li>
+        <li data-fr="Bac spécialités : Mathématiques, Physique-Chimie, Sciences Économiques et Sociales (Lycée Saint-Genès, Bordeaux)" data-en="French Baccalaureate: Mathematics, Physics-Chemistry,Social Sciences (Saint-Genès High School, Bordeaux)"></li>
         <br>
         <li data-fr="Membre du BDE 2024-2025" data-en="Student Union member 2024-2025"></li>
         <li data-fr="Délégué de promo 2023-2024" data-en="Class Representative 2023-2024"></li>
@@ -289,14 +313,18 @@
     <h2 data-fr="Expériences" data-en="Experiences">Expériences</h2>
     <div class="card-grid">
       <div class="card">
-        <h4 class="card-title" data-fr="Stage à l'ENSMM (4 mois)" data-en="Internship at ENSMM (4 months)">Stage à l'ENSMM (4 mois)</h4>
+        <h4 class="card-title" data-fr="Stage 6 mois – Laboratoire CFM Saint Sébastien – 2026" data-en="6-month internship – CFM Laboratory, Saint Sébastien – 2026">Stage 6 mois – Laboratoire CFM Saint Sébastien – 2026</h4>
+        <p class="card-description" data-fr="Analyse et traitement de signaux issus de capteurs quantiques à centres NV dans un diamant, pour la caractérisation de champs magnétiques via Machine Learning." data-en="Signal analysis of quantum NV-center magnetometry data and development of supervised learning models to predict magnetic field components from ODMR spectra.">Analyse et traitement de signaux issus de capteurs quantiques à centres NV dans un diamant, pour la caractérisation de champs magnétiques via Machine Learning.</p>
+      </div>
+      <div class="card">
+        <h4 class="card-title" data-fr="Stage 4 mois – ENSMM Besançon – 2025" data-en="4-month internship – ENSMM, Besançon – 2025">Stage 4 mois – ENSMM Besançon – 2025</h4>
         <p class="card-description" data-fr="Développement, déploiement, et sécurisation d'une API Python dans le cadre d'un projet de correction automatique et personnalisée d'exercices mathématiques." data-en="Development, deployment, and securing of a Python API as part of a project for automatic and personalized correction of math exercises.">Développement, déploiement, et sécurisation d'une API Python dans le cadre d'un projet de correction automatique et personnalisée d'exercices mathématiques.</p>
       </div>
       <div class="card">
-        <h4 class="card-title" data-fr="Stage DSI Région Nouvelle-Aquitaine (6 semaines)" data-en="Internship at DSI Nouvelle-Aquitaine (6 weeks)">Stage DSI Région Nouvelle-Aquitaine (6 semaines)</h4>
+        <h4 class="card-title" data-fr="Stage 2 mois – Région Nouvelle-Aquitaine (DSI) – 2024" data-en="2-month internship – Nouvelle-Aquitaine Region (DSI) – 2024">Stage 2 mois – Région Nouvelle-Aquitaine (DSI) – 2024</h4>
         <p class="card-description">
           <ul><li data-fr="Installation de monitoring afin de détecter les failles potentielles." data-en="Monitoring setup to detect potential vulnerabilities.">Installation de monitoring, détection de failles, assistance PMO.</li>
-          <li data-fr="Chefferie de projet : Assistance du Project Management Officer (PMO)" data-en="Project Management Officer (PMO) support."></li></ul>
+          <li data-fr="Chefferie de projet : assistance du Project Management Officer (PMO)" data-en="Project management support: assistance to the Project Management Officer (PMO).">Chefferie de projet : assistance du Project Management Officer (PMO)</li></ul>
         </p>
       </div>
     </div>
@@ -305,6 +333,11 @@
   <section class="section">
     <h2 data-fr="Projets scolaires" data-en="Academic Projects">Projets scolaires</h2>
     <div class="card-grid">
+
+      <a href="https://github.com/TheoBens3IL/WalkingScan" target="_blank" class="card card-projet bg-walkingscan">
+        <h4 class="card-title" data-fr="WalkingScan² (2026)" data-en="WalkingScan² (2026)">WalkingScan² (2026)</h4>
+        <p class="card-description" data-fr="Développement d'algorithmes temps réel pour extraire des paramètres de marche (nombre de pas, longueur de foulée, vitesse, symétrie) à partir de capteurs inertiels à six degrés de liberté dans un casque de réalité virtuelle." data-en="Development of real-time algorithms to extract gait parameters (number of steps, stride length, speed, symmetry) from 6-DOF inertial sensors in a VR headset.">Développement d'algorithmes temps réel pour extraire des paramètres de marche (nombre de pas, longueur de foulée, vitesse, symétrie) à partir de capteurs inertiels à six degrés de liberté dans un casque de réalité virtuelle.</p>
+      </a>
 
       <a href="https://github.com/TheoBens/MagneticField-and-Protontherapy" target="_blank" class="card card-projet bg-champmag">
         <h4 class="card-title" data-fr="Champ Magnétique et Protonthérapie (2025)" data-en="Magnetic Field and Proton Therapy (2025)">Champ Magnétique et Protonthérapie</h4>
@@ -329,11 +362,6 @@
       <a href="https://github.com/OWkut/Projet-image" target="_blank" class="card card-projet bg-images">
         <h4 class="card-title" data-fr="Projet Traitement d'images (2025)" data-en="Image Processing Project (2025)">Projet Traitement d'images (2025)</h4>
         <p class="card-description" data-fr="Utilisation de YOLO pour créer une intelligence artificielle de détection et classification de déchets." data-en="Utilization of YOLO to create an artificial intelligence for waste detection and classification.">Utilisation de YOLO pour créer une intelligence artificielle de détection et classification de déchets</p>
-      </a>
-
-      <a href="https://github.com/theo-ben-sadoun/cybersecurity-project" target="_blank" class="card card-projet bg-cyber">
-        <h4 class="card-title" data-fr="Cybersécurité" data-en="Cybersecurity">Cybersécurité</h4>
-        <p class="card-description" data-fr="Projet système et architecture réseaux + Gestion de monitoring : Détection, analyse et résolution des failles de sécurité d'une infrastructure simulée." data-en="System/network architecture & monitoring: Detection, analysis, resolution of simulated infrastructure vulnerabilities.">Projet système et architecture réseaux + Gestion de monitoring : Détection, analyse...</p>
       </a>
 
       <a href="https://github.com/TheoBens3IL/Appli-Java" target="_blank" class="card card-projet bg-java">
