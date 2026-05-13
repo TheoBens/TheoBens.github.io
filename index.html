@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio - Théo Ben Sadoun</title>
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="preload" as="image" href="images/champmag-preview.png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any">
+  <!-- Favicon : dérivé de noun-brain-network-100405.svg (Noun Project) — vérifier la mention obligatoire selon ta licence d’achat. -->
   <style>
     :root {
       --bleu-fonce: #2c3e50;
@@ -149,6 +150,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      isolation: isolate;
     }
 
     .card-projet::before {
@@ -156,7 +158,7 @@
       position: absolute;
       inset: 0;
       background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
+      z-index: 1;
       transition: background 0.3s ease;
     }
 
@@ -164,8 +166,38 @@
       background: rgba(0, 0, 0, 0.2);
     }
 
-    .card.card-projet.bg-java::before {
-      content: none;
+    .card-projet-with-media {
+      background-image: none !important;
+      background-color: var(--gris-bleute);
+    }
+
+    .card-projet-with-media > .proj-thumb {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card-projet-with-media > .proj-thumb--static {
+      opacity: 1;
+      transition: opacity 0.35s ease;
+    }
+
+    .card-projet-with-media > .proj-thumb--hover {
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .card-projet-with-media:hover > .proj-thumb--static {
+      opacity: 0;
+    }
+
+    .card-projet-with-media:hover > .proj-thumb--hover {
+      opacity: 1;
     }
 
     .card-projet:hover {
@@ -176,7 +208,7 @@
     .card-title,
     .card-description {
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .card-title {
@@ -197,10 +229,6 @@
       z-index: 0;
     }
 
-    .bg-champmag {
-      background-image: url("images/champmag-preview.png");
-      background-color: #cfd8dc;
-    }
     .bg-sillda   { background-image: url("images/liptracking.png"); }
     .bg-robotique{ background-image: url("images/Dijkstra.png"); }
     .bg-ai4industry{ background-image: url("images/ai4industry.png"); }
@@ -209,24 +237,13 @@
       background-image: url("images/WalkingScan-preview.png");
       background-color: #1b263b;
     }
-    .bg-java {
-      background-image:
-        linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.48)),
-        url("images/marathon-tracking-preview.png");
-    }
     .bg-space-invaders { background-image: url("images/space-invaders.png"); }
 
-    .bg-champmag:hover { background-image: url("images/proton_traj.gif"); }
     .bg-sillda:hover      { background-image: url("images/liptracking.gif"); }
     .bg-robotique:hover   { background-image: url("images/Dijkstra.gif"); }
     .bg-ai4industry:hover { background-image: url("images/ai4industry2.png"); }
     .bg-images:hover      { background-image: url("images/traitement-images.gif"); }
     .bg-walkingscan:hover { background-image: url("images/WalkingScan.png"); }
-    .bg-java:hover {
-      background-image:
-        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-        url("images/java.gif");
-    }
     .bg-space-invaders:hover { background-image: url("images/space-invaders.gif"); }
 
     .card-description {
@@ -373,7 +390,9 @@
         <p class="card-description" data-fr="Développement d'algorithmes temps réel pour extraire des paramètres de marche (nombre de pas, longueur de foulée, vitesse, symétrie) à partir de capteurs inertiels à six degrés de liberté dans un casque de réalité virtuelle." data-en="Development of real-time algorithms to extract gait parameters (number of steps, stride length, speed, symmetry) from 6-DOF inertial sensors in a VR headset.">Développement d'algorithmes temps réel pour extraire des paramètres de marche (nombre de pas, longueur de foulée, vitesse, symétrie) à partir de capteurs inertiels à six degrés de liberté dans un casque de réalité virtuelle.</p>
       </a>
 
-      <a href="https://github.com/TheoBens/MagneticField-and-Protontherapy" target="_blank" class="card card-projet bg-champmag">
+      <a href="https://github.com/TheoBens/MagneticField-and-Protontherapy" target="_blank" class="card card-projet card-projet-with-media bg-champmag">
+        <img class="proj-thumb proj-thumb--static" src="images/champmag-preview.png" alt="" role="presentation" decoding="async" loading="lazy" aria-hidden="true">
+        <img class="proj-thumb proj-thumb--hover" src="images/proton_traj.gif" alt="" role="presentation" decoding="async" loading="lazy" aria-hidden="true">
         <h4 class="card-title" data-fr="Champ Magnétique et Protonthérapie (2025)" data-en="Magnetic Field and Proton Therapy (2025)">Champ Magnétique et Protonthérapie</h4>
         <p class="card-description" data-fr="Projet de modélisation numérique pour la physique: Étude de l'influence d'un champ magnétique sur la trajectoire d'une particule chargée, et application au domaine de la protonthérapie." data-en="Numerical modeling project for physics: Study of the influence of a magnetic field on the trajectory of a charged particle, and application to the field of proton therapy.">Projet de modélisation numérique pour la physique: Étude de l'influence d'un champ magnétique sur la trajectoire d'une particule chargée, et application au domaine de la protonthérapie.</p>
       </a>
@@ -398,7 +417,9 @@
         <p class="card-description" data-fr="Utilisation de YOLO pour créer une intelligence artificielle de détection et classification de déchets." data-en="Utilization of YOLO to create an artificial intelligence for waste detection and classification.">Utilisation de YOLO pour créer une intelligence artificielle de détection et classification de déchets</p>
       </a>
 
-      <a href="https://github.com/TheoBens3IL/Appli-Java" target="_blank" class="card card-projet bg-java">
+      <a href="https://github.com/TheoBens3IL/Appli-Java" target="_blank" class="card card-projet card-projet-with-media bg-java">
+        <img class="proj-thumb proj-thumb--static" src="images/marathon-tracking-preview.png" alt="" role="presentation" decoding="async" loading="lazy" aria-hidden="true">
+        <img class="proj-thumb proj-thumb--hover" src="images/java.gif" alt="" role="presentation" decoding="async" loading="lazy" aria-hidden="true">
         <h4 class="card-title" data-fr="Appli Java (2023)" data-en="Java App (2023)">Appli Java</h4>
         <p class="card-description" data-fr="Développement d'une application Web-Java qui récolte les données de passages bippés de coureurs de marathon, et de les traiter afin d'en déterminer un classement." data-en="Development of a Web-Java application that collects the data of marathon runners' chip passes, and processes it to determine a ranking.">Développement d'une application Web-Java qui récolte les données de passages bippés de coureurs de marathon, et de les traiter afin d'en déterminer un classement.</p>
       </a>
