@@ -21,9 +21,21 @@
       font-family: Georgia, serif;
       background-color: var(--gris-bleute);
       color: var(--bleu-fonce);
+      text-align: justify;
+      hyphens: auto;
+      -webkit-hyphens: auto;
     }
 
-    header, footer {
+    header.main-header {
+      background-color: var(--bleu-fonce);
+      color: var(--blanc);
+      text-align: justify;
+      padding: 1rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    footer {
       background-color: var(--bleu-fonce);
       color: var(--blanc);
       text-align: center;
@@ -150,6 +162,11 @@
       background: rgba(0, 0, 0, 0.2);
     }
 
+    .card.card-projet.bg-champmag::before,
+    .card.card-projet.bg-java::before {
+      content: none;
+    }
+
     .card-projet:hover {
       transform: scale(1.03);
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
@@ -162,7 +179,7 @@
     }
 
     .card-title {
-      text-align: center;
+      text-align: justify;
     }
 
     .decor-left {
@@ -180,7 +197,9 @@
     }
 
     .bg-champmag {
-      background-image: url("images/champmag-preview.png");
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.48)),
+        url("images/champmag-preview.png");
       background-color: #cfd8dc;
     }
     .bg-sillda   { background-image: url("images/liptracking.png"); }
@@ -191,20 +210,32 @@
       background-image: url("images/WalkingScan-preview.png");
       background-color: #1b263b;
     }
-    .bg-java     { background-image: url("images/AppliJava.png");}
+    .bg-java {
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.48)),
+        url("images/marathon-tracking-preview.png");
+    }
     .bg-space-invaders { background-image: url("images/space-invaders.png"); }
 
-    .bg-champmag:hover    { background-image: url("images/proton_traj.gif"); }
+    .bg-champmag:hover {
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        url("images/proton_traj.gif");
+    }
     .bg-sillda:hover      { background-image: url("images/liptracking.gif"); }
     .bg-robotique:hover   { background-image: url("images/Dijkstra.gif"); }
     .bg-ai4industry:hover { background-image: url("images/ai4industry2.png"); }
     .bg-images:hover      { background-image: url("images/traitement-images.gif"); }
     .bg-walkingscan:hover { background-image: url("images/WalkingScan.png"); }
-    .bg-java:hover        { background-image: url("images/java.gif"); }
+    .bg-java:hover {
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        url("images/java.gif");
+    }
     .bg-space-invaders:hover { background-image: url("images/space-invaders.gif"); }
 
     .card-description {
-      text-align: left;
+      text-align: justify;
     }
 
     @media screen and (max-width: 768px) {
@@ -237,7 +268,7 @@
         grid-template-columns: 1fr;
       }
       .card-title {
-        text-align: center;
+        text-align: justify;
       }
     }
 
@@ -245,6 +276,13 @@
       padding-left: 0;
       box-sizing: border-box;
       justify-content: center;
+    }
+
+    .main-header > div:not(.lang-switch) {
+      width: 100%;
+      max-width: 42rem;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .main-header h1 {
@@ -280,7 +318,7 @@
   </script>
 </head>
 <body>
-  <header class="main-header" style="background: url('images/font.gif') center/cover no-repeat; height: 200px; text-align: center; color: white; display: flex; align-items: center; justify-content: center;">
+  <header class="main-header" style="background: url('images/font.gif') center/cover no-repeat; height: 200px; color: white; display: flex; align-items: center; justify-content: center;">
     <div class="lang-switch">
       <button onclick="toggleLang('fr')">Fr</button>
       <button onclick="toggleLang('en')">En</button>
